@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWithoutAccount.cshtml";
+    ViewBag.Title = "メールの確認";
+}
+<div class="container">
+    <h2>@ViewBag.Title.</h2>
+    <div>
+        <p>
+            メールをご確認いただき、ありがとうございます。@Html.ActionLink("ログインするには、ここをクリックしてください。", "Index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </p>
+    </div>
+</div>

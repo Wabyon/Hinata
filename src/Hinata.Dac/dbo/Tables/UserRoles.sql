@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[UserRoles]
+(
+	[UserId] NVARCHAR(128) NOT NULL,
+    [RoleId] UNIQUEIDENTIFIER NOT NULL,
+
+    CONSTRAINT [PK_UserRoles] PRIMARY KEY ([UserId]), 
+    CONSTRAINT [FK_UserRoles_ToUsers] FOREIGN KEY ([UserId]) REFERENCES [Users]([UserId]) ON DELETE CASCADE, 
+    CONSTRAINT [FK_UserRoles_ToRoles] FOREIGN KEY ([RoleId]) REFERENCES [Roles]([RoleId]) ON UPDATE CASCADE ON DELETE CASCADE,
+)

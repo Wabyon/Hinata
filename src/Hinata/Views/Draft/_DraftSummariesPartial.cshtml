@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Hinata.Models.DraftSummaryViewModel>
+@foreach (var draft in Model)
+{
+    <a href="#@draft.Id" class="list-group-item" data-id="@draft.Id" data-toggle="tab">
+        <p class="list-group-item-heading">
+            @draft.Title
+        </p>
+        <small class="list-group-item-text">
+            @draft.RegisterDateTime.ToString("yyyy/MM/dd HH:mm:ss")
+        </small>
+    </a>
+}

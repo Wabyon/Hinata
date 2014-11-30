@@ -1,0 +1,59 @@
+﻿@model Hinata.Models.User
+@{
+    Layout = "~/Views/Shared/_LayoutWithAccount.cshtml";
+    ViewBag.Title = "マイページ";
+}
+<div class="container">
+    <div class="jumbotron">
+        <h1>@Model.UserName</h1>
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#public" data-toggle="tab">最近の投稿</a></li>
+        <li><a href="#private" data-toggle="tab">限定投稿</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="public" class="list-group tab-pane fade in active"></div>
+        <div id="private" class="list-group tab-pane fade"></div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function() {
+            GetPublic(0, 10);
+            GetPrivate(0, 10);
+        });
+
+        var GetPublic = function(skip, take) {
+            var data = {};
+            data.name = '@Model.UserName';
+            data.skip = skip;
+            data.take = take;
+            $.ajax({
+                url: "@Url.Action("GetUserPublic", "User")",
+                type: "GET",
+                dataType: "html",
+                data: data,
+                success: function(html) {
+                    $('#public').append(html);
+                },
+            });
+        }
+
+        var GetPrivate = function(skip, take) {
+            var data = {};
+            data.name = '@Model.UserName';
+            data.skip = skip;
+            data.take = take;
+            $.ajax({
+                url: "@Url.Action("GetUserPrivate", "User")",
+                type: "GET",
+                dataType: "html",
+                data: data,
+                success: function(html) {
+                    $('#private').append(html);
+                },
+            });
+        }
+    </script>
+}

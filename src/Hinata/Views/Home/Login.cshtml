@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWithoutAccount.cshtml";
+}
+<div class="container">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+        <div class="tab-content">
+            <div id="login" class="tab-pane active">
+                <div id="loginFormArea">
+                    @Html.Partial("~/Views/Account/_LoginPartial.cshtml")
+                </div>
+                <div class="form-group ">
+                    <input id="btnLogin" type="button" class="btn btn-primary btn-block" value="ログイン" />
+                </div>
+                <div>
+                    @Html.ActionLink("パスワードを忘れた場合", "ForgotPassword", "Account")
+                </div>
+                <a href="#register" id="aregister" data-toggle="tab">新しいユーザーとして登録する</a>
+            </div>
+            <div id="register" class="tab-pane">
+                <div id="registerFormArea">
+                    @Html.Partial("~/Views/Account/_RegisterPartial.cshtml")
+                </div>
+                <div class="form-group ">
+                    <input id="btnRegister" type="button" class="btn btn-primary btn-block" value="登録" />
+                </div>
+                <a href="#login" id="acancel" data-toggle="tab">キャンセル</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function() {
+            $('#btnLogin').click(function() {
+                $.ajax({
+                    url: "@Url.Action("Login", "Account")",
+                    type: "POST",
+                    dataType: "json",
+                    data: $('#login form').serialize(),
+                    success: function(data) {
+                        if (data.RedirectUrl) {
+                            window.location = data.RedirectUrl;
+                        } else {
+                            $('#loginFormArea').html(data);
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        $('#loginFormArea').html(XMLHttpRequest.responseText);
+                    }
+                });
+            });
+
+            $('#btnRegister').click(function() {
+                $.ajax({
+                    url: "@Url.Action("Register", "Account")",
+                    type: "POST",
+                    dataType: "json",
+                    data: $('#register form').serialize(),
+                    success: function(data) {
+                        if (data.RedirectUrl) {
+                            window.location = data.RedirectUrl;
+                        } else {
+                            $('#registerFormArea').html(data);
+                        }
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        $('#registerFormArea').html(XMLHttpRequest.responseText);
+                    }
+                });
+            });
+        })
+    </script>
+}

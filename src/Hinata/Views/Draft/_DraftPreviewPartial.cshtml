@@ -1,0 +1,20 @@
+﻿@model Hinata.Models.DraftPreviewViewModel
+<div class="row">
+    <div>
+        @Html.RouteLink("編集", "DraftEdit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+        @Html.RouteLink("削除", "DraftDelete", new { id = Model.Id }, new { @class = "btn btn-danger pull-right" })
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">@Model.Title</h2>
+            @foreach (var tag in Model.Tags)
+            {
+                var tagversion = string.IsNullOrWhiteSpace(tag.Version) ? tag.Name : string.Format("{0}[{1}]", tag.Name, tag.Version);
+                <span>@tagversion</span>
+            }
+        </div>
+        <div class="panel-body item-view">
+            @Html.Raw(@Model.Html)
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Hinata.Models.ItemSummaryViewModel>
+@foreach (var item in Model)
+{
+    <div class="list-group-item">
+        <h4 class="list-group-item-heading">
+            @Html.ActionLink(@item.Title, "Index", "Item", new { id = @item.Id }, null)
+        </h4>
+        <p class="list-group-item-text">
+            @foreach (var tag in item.Tags)
+            {
+                <span>@tag.Name</span>
+            }
+        </p>
+        <p class="list-group-item-text">
+            @Html.ActionLink(@item.User.UserName, "Index", "User", new { name = @item.User.UserName }, null) さんが @item.RegisterDateTime.ToString("yyyy/M/d") に作成
+        </p>
+    </div>
+}

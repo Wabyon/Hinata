@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+@section styles {
+    @RenderSection("styles", false)
+}
+@RenderBody()
+<hr />
+<div class="container">
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Wabyon</p>
+    </footer>
+</div>
+@section scripts {
+    @RenderSection("scripts", false)
+}

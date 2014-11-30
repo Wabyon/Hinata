@@ -1,0 +1,26 @@
+﻿@model Hinata.Models.ItemViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutWithAccount.cshtml";
+    ViewBag.Title = Model.Title;
+}
+<div class="container">
+    <div class="jumbotron">
+        <h2>@Model.Title</h2>
+        @foreach (var tag in Model.Tags)
+        {
+            var tagversion = string.IsNullOrWhiteSpace(tag.Version) ? tag.Name : string.Format("{0}[{1}]", tag.Name, tag.Version);
+            <span>@tagversion</span>
+        }
+        @if (Model.CanEdit)
+        {
+            <div>
+                @Html.RouteLink("編集", "DraftEdit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+            </div>
+        }
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body item-view">
+            @Html.Raw(Model.Html)
+        </div>
+    </div>
+</div>

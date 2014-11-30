@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Drafts]
+(
+	[ItemId] VARCHAR(20) NOT NULL, 
+    [Title] NVARCHAR(100) NOT NULL, 
+    [Body] NVARCHAR(MAX) NOT NULL, 
+    [UserId] NVARCHAR(128) NOT NULL, 
+    [RegisterDateTimeUtc] DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(), 
+    CONSTRAINT [PK_Drafts] PRIMARY KEY ([ItemId]), 
+)

@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNet.Identity
+@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
+{
+    @Html.AntiForgeryToken()
+    <ul class="nav navbar-nav navbar-right" role="menu">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@User.Identity.GetUserName() <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    @Html.RouteLink("マイページ", "UserIndex", new { name = @User.Identity.GetUserName() })
+                </li>
+                <li>
+                    @Html.ActionLink("下書き一覧", "Index", "Draft", null, new { title = "Draft" })
+                </li>
+                <li>
+                    @Html.ActionLink("設定", "Index", "Manage", null, new {title = "Manage"})
+                </li>
+                <li class="divider"></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">ログオフ</a></li>
+            </ul>
+        </li>
+    </ul>
+}

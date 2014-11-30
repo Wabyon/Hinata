@@ -1,0 +1,59 @@
+﻿@model Hinata.Models.DraftIndexViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutWithAccount.cshtml";
+    ViewBag.Title = "下書き";
+}
+<div class="container">
+    <div class="col-md-3">
+        <div>
+            <h4>下書き一覧</h4>
+            <a href="@Url.Action("Create","Draft")" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
+        </div>
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#unpublished" data-toggle="tab">未投稿</a></li>
+                <li><a href="#published" data-toggle="tab">投稿済</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="unpublished" class="list-group tab-pane fade in active">
+                    @Html.Partial("_DraftSummariesPartial", Model.UnContributedDrafts)
+                </div>
+                <div id="published" class="list-group tab-pane fade">
+                    @Html.Partial("_DraftSummariesPartial", Model.ContributedDrafts)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div>
+            <div id="draft-preview"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function() {
+            $(document).on('click', 'a.list-group-item', function () {
+                var self = this;
+                $('a.list-group-item').removeClass('active');
+                $(self).addClass('active');
+                GetPreview($(self).data('id'));
+            });
+        });
+
+        var GetPreview = function(id) {
+            var data = {};
+            data.id = id;
+            $.ajax({
+                url: "@Url.Action("Preview", "Draft")",
+                type: "GET",
+                dataType: "html",
+                data: data,
+                success: function(html) {
+                    $('#draft-preview').html(html);
+                },
+            });
+        }
+    </script>
+}

@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWithAccount.cshtml";
+    ViewBag.Title = "Home";
+}
+<div class="container">
+    @Html.ActionLink(@"ノウハウ・Tipsを投稿する", "Create", "Draft", null, new { @class = "btn btn-primary", @role = "button" })
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#following" data-toggle="tab">フィード</a></li>
+        <li><a href="#public" data-toggle="tab">すべての投稿</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="following" class="list-group tab-pane fade in active"></div>
+        <div id="public" class="list-group tab-pane fade"></div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        $(function () {
+            GetFollowing(0, 10);
+            GetPublic(0, 10);
+        });
+
+        var GetFollowing = function (skip, take) {
+            var data = {};
+            data.skip = skip;
+            data.take = take;
+            $.ajax({
+                url: "@Url.Action("GetFollowing", "Item")",
+                type: "GET",
+                dataType: "html",
+                data: data,
+                success: function (html) {
+                    $('#following').append(html);
+                },
+            });
+        }
+
+        var GetPublic = function (skip, take) {
+            var data = {};
+            data.skip = skip;
+            data.take = take;
+            $.ajax({
+                url: "@Url.Action("GetPublic", "Item")",
+                type: "GET",
+                dataType: "html",
+                data: data,
+                success: function (html) {
+                    $('#public').append(html);
+                },
+            });
+        }
+    </script>
+}
