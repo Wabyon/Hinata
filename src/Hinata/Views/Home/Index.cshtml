@@ -4,14 +4,16 @@
 }
 <div class="container">
     @Html.ActionLink(@"ノウハウ・Tipsを投稿する", "Create", "Draft", null, new { @class = "btn btn-primary", @role = "button" })
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#following" data-toggle="tab">フィード</a></li>
-        <li><a href="#public" data-toggle="tab">すべての投稿</a></li>
-    </ul>
-    <div class="tab-content">
-        <div id="following" class="list-group tab-pane fade in active"></div>
-        <div id="public" class="list-group tab-pane fade"></div>
-    </div>
+    <section class="main-area">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#following" data-toggle="tab">フィード</a></li>
+            <li><a href="#public" data-toggle="tab">すべての投稿</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="following" class="list-group tab-pane fade in active"></div>
+            <div id="public" class="list-group tab-pane fade"></div>
+        </div>
+    </section>
 </div>
 @section scripts {
     <script>
