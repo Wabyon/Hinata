@@ -8,10 +8,10 @@
         <p class="list-group-item-text">
             @foreach (var tag in item.Tags)
             {
-                <span>@tag.Name</span>
+                <span class="tag">@tag.Name</span>
             }
         </p>
-        <p class="list-group-item-text">
+        <p class="list-group-item-text item-meta-info">
             @Html.ActionLink(@item.User.UserName, "Index", "User", new { name = @item.User.UserName }, null) さんが @item.RegisterDateTime.ToString("yyyy/M/d") に作成
         </p>
     </div>
