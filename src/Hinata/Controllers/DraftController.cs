@@ -135,7 +135,7 @@ namespace Hinata.Controllers
             return PartialView("_DraftPreviewPartial", DraftPreviewViewModel.Create(draft, _parser));
         }
 
-        [HttpGet]
+        [HttpPost]
         [ValidateInput(false)]
         [Route("transform")]
         public ActionResult Transform(string markdown)
