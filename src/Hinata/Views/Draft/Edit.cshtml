@@ -135,7 +135,7 @@
             data.markdown = editorArea.value;
             $.ajax({
                 url: "@Url.Action("Transform", "Draft")",
-                type: "GET",
+                type: "POST",
                 dataType: "html",
                 data: data,
                 success: function (html) {
