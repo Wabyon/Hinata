@@ -33,6 +33,7 @@ C# + ASP.NET MVC 5で開発しています。
 * highlight.js
 * Modernizr
 * Twitter Bootstrap
+* [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)
 * Dapper
 * JavaScriptEngineSwitcher.Core
 * JavaScriptEngineSwitcher.V8
