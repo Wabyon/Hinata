@@ -18,6 +18,17 @@
 @section scripts {
     <script>
         $(function () {
+            $('section.main-area > div.tab-content').on('click', 'div.btn.btn-block', function() {
+                var self = this;
+                var cnt = $('div.list-group.active > div.list-group-item').length;
+                if ($('div.tab-content > div.list-group.active').attr('id') === 'public') {
+                    GetPublic(cnt, 10);
+                } else {
+                    GetFollowing(cnt, 10);
+                }
+                $(self).remove();
+            });
+
             GetFollowing(0, 10);
             GetPublic(0, 10);
         });
