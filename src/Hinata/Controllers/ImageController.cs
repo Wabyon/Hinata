@@ -37,7 +37,7 @@ namespace Hinata.Controllers
             if (string.IsNullOrWhiteSpace(file.FileName)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var ext = Path.GetExtension(file.FileName);
             if (string.IsNullOrWhiteSpace(ext)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            ext = ext.Replace(".", "");
+            ext = ext.Replace(".", "").ToLower();
             if (_permittedExtensions.All(x => x != ext)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var user = await User.GetCurrentAsync();
