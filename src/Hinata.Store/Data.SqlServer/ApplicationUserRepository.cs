@@ -16,13 +16,13 @@ namespace Hinata.Data.SqlServer
         public ApplicationUserRepository(string connectionString)
         {
             _connectionString = connectionString;
+
+            SqlMapper.AddTypeMap(typeof(DateTime), DbType.DateTime2);
+            SqlMapper.AddTypeMap(typeof(DateTime?), DbType.DateTime2);
         }
 
         public async Task CreateAsync(ApplicationUser user)
         {
-            SqlMapper.AddTypeMap(typeof(DateTime), DbType.DateTime2);
-            SqlMapper.AddTypeMap(typeof(DateTime?), DbType.DateTime2);
-
             using (var cn = new SqlConnection(_connectionString))
             {
                 await cn.OpenAsync();
