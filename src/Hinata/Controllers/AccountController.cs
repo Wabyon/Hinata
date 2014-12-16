@@ -189,7 +189,7 @@ namespace Hinata.Controllers
             {
                 return View(model);
             }
-            var user = await _userManager.FindByNameAsync(model.Email);
+            var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // ユーザーが存在しないことを公開しません。
