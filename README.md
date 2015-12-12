@@ -1,5 +1,7 @@
 Hinata
 ======
+[現在はオンプレミス版を主体として開発を進めています。](https://github.com/Wabyon/Hinata-on-premise)
+****
 
 HinataはASP.NET MVCで作成されたMS Azureで動作する[Qiita](http://qiita.com/)クローンです。
 
